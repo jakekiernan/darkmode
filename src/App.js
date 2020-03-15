@@ -1,25 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { ThemeProvider } from 'styled-components'
+import { lightTheme, darkTheme } from './theme'
+import { GlobalStyles } from './global'
+import { useStickyState } from './hooks/useStickyState'
+import { Body, BodyTitle, Header, Page, PageTitle, Switch } from './components'
+import Day from './assets/day.jpg'
+import Night from './assets/night.jpg'
 
 function App() {
+  const [darkMode, setDarkMode] = useStickyState(true, 'darkMode')
+  const toggleTheme = () => {
+    if (darkMode) {
+      setDarkMode(false)
+    } else {
+      setDarkMode(true)
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <GlobalStyles />
+      <Page>
+        <Header>
+          <PageTitle>
+            Styled Components
+          </PageTitle>
+          <Switch
+            handleChange={() => toggleTheme()} />
+        </Header>
+        <Body>
+          <BodyTitle>{darkMode ? 'Dark Mode' : 'Light Mode'}</BodyTitle>
+          <img src={darkMode ? Night : Day}
+            alt={darkMode ? "London Birdge night" : "London Birdge day"} />
+        </Body>
+      </Page>
+    </ThemeProvider>
   );
 }
 
