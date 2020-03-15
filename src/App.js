@@ -4,6 +4,7 @@ import { lightTheme, darkTheme } from './theme'
 import { GlobalStyles } from './global'
 import { useStickyState } from './hooks/useStickyState'
 import { Body, BodyTitle, Header, Page, PageTitle, Switch } from './components'
+import { upperCase } from './utils'
 import Day from './assets/day.jpg'
 import Night from './assets/night.jpg'
 
@@ -17,11 +18,7 @@ function App() {
       setDarkMode(true)
     }
   }
-  const interpolate = 'no'
-  const me = 'Components'
-  const dumbTemplateTagging = (strings, _first, second) => {
-    return `${strings[1].charAt(1).toUpperCase()}${strings[1].slice(2)} ${second}`
-  }
+  const interpolate = 'components'
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
@@ -31,7 +28,7 @@ function App() {
           <PageTitle
             titlePink={titlePink}
             onClick={() => setTitleStyled(bool => !bool)}>
-            {dumbTemplateTagging`You ain't got ${ interpolate } styled ${ me }`}
+            {upperCase`styled ${ interpolate }`}
           </PageTitle>
           <Switch
             handleChange={() => toggleTheme()} />
