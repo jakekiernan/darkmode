@@ -17,6 +17,11 @@ function App() {
       setDarkMode(true)
     }
   }
+  const interpolate = 'no'
+  const me = 'Components'
+  const dumbTemplateTagging = (strings, _first, second) => {
+    return `${strings[1].charAt(1).toUpperCase()}${strings[1].slice(2)} ${second}`
+  }
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
@@ -26,7 +31,7 @@ function App() {
           <PageTitle
             titlePink={titlePink}
             onClick={() => setTitleStyled(bool => !bool)}>
-            Styled Components
+            {dumbTemplateTagging`You ain't got ${ interpolate } styled ${ me }`}
           </PageTitle>
           <Switch
             handleChange={() => toggleTheme()} />
