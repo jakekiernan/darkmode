@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme } from './theme'
 import { GlobalStyles } from './global'
 import { useStickyState } from './hooks/useStickyState'
-import { Body, BodyTitle, Header, Page, PageTitle, Switch } from './components'
+import { Body, BodyTitle, Header, Input, Page, PageTitle, Switch } from './components'
 import { upperCase } from './utils'
 import Day from './assets/day.jpg'
 import Night from './assets/night.jpg'
@@ -26,6 +26,7 @@ function App() {
       <Page>
         <Header>
           <PageTitle
+            as="button"
             titlePink={titlePink}
             onClick={() => setTitleStyled(bool => !bool)}>
             {upperCase`styled ${ interpolate }`}
@@ -37,6 +38,8 @@ function App() {
           <BodyTitle>{darkMode ? 'Dark Mode' : 'Light Mode'}</BodyTitle>
           <img src={darkMode ? Night : Day}
             alt={darkMode ? "London Birdge night" : "London Birdge day"} />
+          <Input small margin='1em 0' placeholder="Name" />
+          <Input small margin='0 0 2em 0' placeholder="Email" />
         </Body>
       </Page>
     </ThemeProvider>
