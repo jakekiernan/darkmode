@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme } from './theme'
 import { GlobalStyles } from './global'
@@ -9,6 +9,7 @@ import Night from './assets/night.jpg'
 
 function App() {
   const [darkMode, setDarkMode] = useStickyState(true, 'darkMode')
+  const [titlePink, setTitleStyled] = useState(false)
   const toggleTheme = () => {
     if (darkMode) {
       setDarkMode(false)
@@ -22,7 +23,9 @@ function App() {
       <GlobalStyles />
       <Page>
         <Header>
-          <PageTitle>
+          <PageTitle
+            titlePink={titlePink}
+            onClick={() => setTitleStyled(bool => !bool)}>
             Styled Components
           </PageTitle>
           <Switch
