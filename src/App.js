@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider, ThemeConsumer } from 'styled-components'
 import { lightTheme, darkTheme } from './theme'
 import { GlobalStyles } from './global'
 import { useStickyState } from './hooks/useStickyState'
 import { Body, BodyTitle, Header, Input, Page, PageTitle, Spin, Switch } from './components'
-import { upperCase } from './utils'
+import { upperCase, checkIsStyledComponent } from './utils'
 import Day from './assets/day.jpg'
 import Night from './assets/night.jpg'
 
@@ -19,6 +19,7 @@ function App() {
     }
   }
   const interpolate = 'components'
+  checkIsStyledComponent([Body, BodyTitle, Header, Input, Page, PageTitle, Spin, Switch])
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
@@ -29,7 +30,7 @@ function App() {
             as="button"
             titlePink={titlePink}
             onClick={() => setTitleStyled(bool => !bool)}>
-            <Spin margin='0 0.5em'>&#9757;</Spin>{upperCase`styled ${ interpolate }`}
+            <Spin margin='0 0.5em' animationLength='4s'><span role='img' aria-label='jsx-a11y/accessible-emoji'>&#9757;</span></Spin>{upperCase`styled ${ interpolate }`}
           </PageTitle>
           <Switch
             handleChange={() => toggleTheme()} />
@@ -42,6 +43,9 @@ function App() {
           <Input small margin='0 0 2em 0' placeholder="Email" />
         </Body>
       </Page>
+      <ThemeConsumer>
+        {theme => console.log(`text color: ${theme.text}, background color: ${theme.background}`)}
+      </ThemeConsumer>
     </ThemeProvider>
   );
 }

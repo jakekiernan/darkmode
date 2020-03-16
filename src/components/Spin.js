@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 const spin = keyframes`
   from {
@@ -9,7 +9,12 @@ const spin = keyframes`
   }
 `
 
+const animation = props =>
+  css`
+    ${spin} ${props.animationLength} infinite linear;
+  `
+
 export const Spin = styled.div`
   margin: ${props => props.margin};
-  animation: ${spin} 4s infinite linear;
+  animation: ${animation};
 `
