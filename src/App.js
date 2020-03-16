@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme } from './theme'
 import { GlobalStyles } from './global'
 import { useStickyState } from './hooks/useStickyState'
-import { Body, BodyTitle, Header, Input, Page, PageTitle, Switch } from './components'
+import { Body, BodyTitle, Header, Input, Page, PageTitle, Spin, Switch } from './components'
 import { upperCase } from './utils'
 import Day from './assets/day.jpg'
 import Night from './assets/night.jpg'
@@ -29,7 +29,7 @@ function App() {
             as="button"
             titlePink={titlePink}
             onClick={() => setTitleStyled(bool => !bool)}>
-            {upperCase`styled ${ interpolate }`}
+            <Spin margin='0 0.5em'>&#9757;</Spin>{upperCase`styled ${ interpolate }`}
           </PageTitle>
           <Switch
             handleChange={() => toggleTheme()} />

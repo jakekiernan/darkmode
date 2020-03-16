@@ -9,4 +9,6 @@ export const PageTitle = styled.h3`
   ${props => props.titlePink && css`
     color: palevioletred;
   `}
+  display: flex;
+  flex-direction: row;
 `
